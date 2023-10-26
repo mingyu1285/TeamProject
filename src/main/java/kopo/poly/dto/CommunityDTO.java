@@ -1,6 +1,5 @@
 package kopo.poly.dto;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -8,11 +7,11 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class NoticeDTO {
+public class CommunityDTO {
 
-    private String noticeSeq; //기본키, 순번
+    private String communitySeq; //기본키, 순번
     private String title; //제목
-    private String noticeYn; //공지글 여부
+    private String communityYn; //공지글 여부
     private String contents; //글 내용
     private String userId; //작성자
     private String readCnt; //조회수

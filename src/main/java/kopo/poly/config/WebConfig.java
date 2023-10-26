@@ -4,14 +4,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
-@Configuration
-@EnableWebMvc
-public class WebConfig implements WebMvcConfigurer {
-
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/css/**")
-                .addResourceLocations("classpath:/static/css/"); // Less 파일의 위치
-    }
-}
+//
+//@Configuration
+//@EnableWebMvc
+//public class WebConfig implements WebMvcConfigurer {
+//
+//    @Override
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        registry.addResourceHandler("/resources/css/**")
+//                .addResourceLocations("classpath:/static/css/"); // Less 파일의 위치
+//    }
+//}

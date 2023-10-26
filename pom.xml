@@ -65,11 +65,20 @@
             <scope>provided</scope>
         </dependency>
 
+
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>less</artifactId>
             <version>2.7.2</version>
         </dependency>
+
+        <!--JSTL 라이브러리 테이블에 동적 추가하려면 사용해야함-->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
 
 
     </dependencies>
