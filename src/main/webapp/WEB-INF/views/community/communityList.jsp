@@ -32,6 +32,14 @@
     <meta name="author" content="">
 
     <title>장바구니 커뮤니티</title>
+    <script type="text/javascript">
+
+        //커뮤니티 상세보기 이동
+        function doDetail(cseq){
+            location.href= "/community/communityInfo?cseq=" + cseq;
+        }
+
+    </script>
 
     <!-- CSS FILES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,6 +51,7 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <link href="/css/bootstrap-icons.css" rel="stylesheet">
+
 
     <style>
 <%--        여기밑에는 기본 색설정--%>
@@ -224,6 +233,7 @@ strong {
         }
 
         .fixed_headers tbody {
+
             display: contents;
             overflow: auto;
         }
@@ -233,7 +243,8 @@ strong {
         }
 
 .hero-section {
-    background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+    /*background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);*/
+    background-image: linear-gradient(15deg, #ffffff 0%, #ffffff 100%);
     position: relative;
     overflow: hidden;
     padding-top: 30px;
@@ -329,8 +340,8 @@ strong {
                         for(CommunityDTO dto : rList) {
                     %>
                         <tr style="width: 100%">
-                            <td><%=CmmUtil.nvl(dto.getCommunitySeq())%></td>
-                            <td><%=CmmUtil.nvl(dto.getTitle())%></td>
+                            <td onclick="doDetail(<%=CmmUtil.nvl(dto.getCommunitySeq())%>)"><%=CmmUtil.nvl(dto.getCommunitySeq())%></td>
+                            <td onclick="doDetail(<%=CmmUtil.nvl(dto.getCommunitySeq())%>)"><%=CmmUtil.nvl(dto.getTitle())%></td>
                             <td><%=CmmUtil.nvl(dto.getReadCnt())%></td>
                             <td><%=CmmUtil.nvl(dto.getRegId())%></td>
                             <td><%=CmmUtil.nvl(dto.getRegDt())%></td>

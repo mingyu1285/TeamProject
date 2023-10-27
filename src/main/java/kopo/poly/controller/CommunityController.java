@@ -164,7 +164,7 @@ public class CommunityController {
      * 게시판 상세보기
      */
     @GetMapping(value = "communityInfo")
-    public String communityInfo(HttpServletRequest request, ModelMap model) throws Exception {
+    public String communityInfo(HttpServletRequest request, ModelMap model, HttpSession session) throws Exception {
 
         log.info(this.getClass().getName() + ".communityInfo Start!");
 
@@ -173,8 +173,6 @@ public class CommunityController {
         /*
          * 로그 확인하기
          * */
-
-
         log.info("nSeq : " + cSeq);
 
         /*값 전달을 반드시 DTO 객체를 이용해서 처리할 전달 받은 값을 DTO 객체에 넣는다.*/
@@ -186,6 +184,9 @@ public class CommunityController {
 
         //조회된 리스트 결과값 넣어주기
         model.addAttribute("rDTO", rDTO);
+
+        //모델에 세션 아이디 담아서 보내주기
+
 
         log.info(this.getClass().getName() + ".communityInfo End!");
 
@@ -308,7 +309,7 @@ public class CommunityController {
     }
 //    @GetMapping(value = "main")
 //    public String testMain(){
-//        return "/notice/main";
+//        return "/community/main";
 //    }
 
 

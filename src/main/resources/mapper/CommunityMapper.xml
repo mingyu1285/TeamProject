@@ -29,10 +29,10 @@
 
     <!--게시판 상세보기 쿼리문-->
     <select id="getCommunityInfo" resultType="CommunityDTO">
-        SELECT C.COMMUNITY_SEQ, C.TITLE, C.COMMUNITY_YN, C.READ_CNT, U.USER_NAME, C.USER_ID,
+        SELECT C.COMMUNITY_SEQ, C.TITLE, C.COMMUNITY_YN, C.READ_CNT, C.USER_ID,
                DATE_FORMAT(C.REG_DT, '%Y-%m-%d') AS REG_DT
-          FROM COMMUNITY C, USER_INFO U
-         WHERE C.USER_ID = U.USER_ID
+          FROM COMMUNITY C
+         WHERE C.USER_ID = C.USER_ID
            AND C.COMMUNITY_SEQ = #{communitySeq}
     </select>
 
