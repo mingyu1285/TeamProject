@@ -1,29 +1,26 @@
-<%@ page import="kopo.poly.dto.CommunityDTO" %>
-<%@ page import="kopo.poly.util.CmmUtil" %>
-<%@ page import="java.util.List" %>
-<%@ page import="kopo.poly.controller.CommunityController" %>
-<%--밑에 거 JSTL 라이브러리를 사용하기위한 것--%>
-<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
-
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<!--<%@ page import="kopo.poly.dto.CommunityDTO" %>-->
+<!--<%@ page import="kopo.poly.util.CmmUtil" %>-->
+<!--<%@ page import="java.util.List" %>-->
+<!--<%@ page import="kopo.poly.controller.CommunityController"%>-->
+<!--<%@ page language="java" contentType="text/html; charset=UTF-8"-->
+<!--         pageEncoding="UTF-8" %>-->
 
 
 
-<%
-//     NoticeController 함수에서 model 객체에 저장된 값 불러오기
-//CommunityDTO rDTO = (CommunityDTO) request.getAttribute("rDTO");
-    List<CommunityDTO> rList = (List<CommunityDTO>) request.getAttribute("rList");
-%>
 
-<%--<%--%>
-<%--    List<CommunityDTO> rList = (List<CommunityDTO>) request.getAttribute("rList");--%>
-<%--    for (CommunityDTO community : rList) {--%>
-<%--        out.println("CommunityDTO: " + community.toString());--%>
-<%--    }--%>
-<%--%>--%>
-<%--<!DOCTYPE html>--%>
-<html lang="en">
+<!--    NoticeController 함수에서 model 객체에 저장된 값 불러오기-->
+<!--CommunityDTO rDTO = (CommunityDTO) request.getAttribute("rDTO");-->
+<!--    List<CommunityDTO> rList = (List<CommunityDTO>) request.getAttribute("rList");-->
+
+
+
+<!--   List<CommunityDTO> rList = (List<CommunityDTO>) request.getAttribute("rList");-->
+<!--   for (CommunityDTO community : rList) {-->
+<!--        out.println("CommunityDTO: " + community.toString());-->
+<!--    }-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,9 +31,8 @@
     <title>장바구니 커뮤니티</title>
     <script type="text/javascript">
 
-        //커뮤니티 상세보기 이동
-        function doDetail(cseq){
-            location.href= "/community/communityInfo?cseq=" + cseq;
+        function doDetail(cSeq) {
+            location.href = "/community/communityInfo?cSeq=" + cSeq;
         }
 
     </script>
@@ -54,7 +50,7 @@
 
 
     <style>
-<%--        여기밑에는 기본 색설정--%>
+       /*여기밑에는 기본 색설정*/
 :root {
     --white-color: #ffffff;
     --primary-color: #13547a;
@@ -179,8 +175,8 @@ strong {
     font-weight: var(--font-weight-bold);
 }
 
-<%--여기까지는 root 무조건 있어야하는거--%>
-<%--위에 상단 바 css--%>
+/*여기까지는 root 무조건 있어야하는거*/
+/*위에 상단 바 css*/
 .navbar-expand-lg .navbar-nav .nav-link {
     border-radius: var(--border-radius-large);
     margin: 10px;
@@ -212,7 +208,7 @@ strong {
 }
 /*여기까지 로고부분 css*/
 
-<%--여기까지 상단 바 css--%>
+/*여기까지 상단 바 css*/
 
 
         /*여기서 부터    */
@@ -266,7 +262,7 @@ strong {
 
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="communityList">
+            <a class="navbar-brand" href="community/communityList">
                 <i class="bi-back"></i>
                 <span>JangBagunI</span>
             </a>
@@ -321,9 +317,9 @@ strong {
 
 
     <section class="hero-section d-flex justify-content-center align-items-center" id="section_1">
-        <div class="container">
+        <div class="container" >
             <div class="row">
-                <table class="fixed_headers">
+                <table class="fixed_headers" th:each="dto:${rList}">
                     <h1>회원 커뮤니티 게시판</h1>
                     <div style="text-align: right"><a href="/community/communityReg">글쓰기</a></div>
                     <thead>
@@ -336,19 +332,14 @@ strong {
                     </tr>
                     </thead>
                     <tbody>
-                    <%
-                        for(CommunityDTO dto : rList) {
-                    %>
-                        <tr style="width: 100%">
-                            <td onclick="doDetail(<%=CmmUtil.nvl(dto.getCommunitySeq())%>)"><%=CmmUtil.nvl(dto.getCommunitySeq())%></td>
-                            <td onclick="doDetail(<%=CmmUtil.nvl(dto.getCommunitySeq())%>)"><%=CmmUtil.nvl(dto.getTitle())%></td>
-                            <td><%=CmmUtil.nvl(dto.getReadCnt())%></td>
-                            <td><%=CmmUtil.nvl(dto.getRegId())%></td>
-                            <td><%=CmmUtil.nvl(dto.getRegDt())%></td>
-                        </tr>
-                    <%
-                        }
-                    %>
+
+                    <tr style="width: 100%" >
+                        <td  th:unless="${dto.communityYn=='Y'}">[[${dto.communitySeq}]]</td>
+                        <td  th:attr="onclick='doDetail(\'' + ${dto.communitySeq} + '\')'">[[${dto.title}]]</td>
+                        <td>[[${dto.readCnt}]]</td>
+                        <td>[[${dto.userId}]]</td>
+                        <td>[[${dto.regDt}]]</td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -368,12 +359,14 @@ strong {
 </footer>
 
 
-<%--<!-- JAVASCRIPT FILES -->--%>
-<%--<script src="js/jquery.min.js"></script>--%>
-<%--<script src="js/bootstrap.bundle.min.js"></script>--%>
-<%--<script src="js/jquery.sticky.js"></script>--%>
-<%--<script src="js/click-scroll.js"></script>--%>
-<%--<script src="js/custom.js"></script>--%>
+<!-- JAVASCRIPT FILES -->
+<!--<script src="js/jquery.min.js"></script>-->
+<!--<script src="js/bootstrap.bundle.min.js"></script>-->
+<!--<script src="js/jquery.sticky.js"></script>-->
+<!--<script src="js/click-scroll.js"></script>-->
+<!--<script src="js/custom.js"></script>-->
 
 
 </body>
+
+</html>

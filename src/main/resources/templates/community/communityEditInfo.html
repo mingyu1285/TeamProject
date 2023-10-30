@@ -11,9 +11,9 @@
 <head>
     <meta charset="UTF-8">
     <title>공지사항 수정하기</title>
-    <link rel="stylesheet" href="/css/table.css"/>
+<%--    <link rel="stylesheet" href="/css/table.css"/>--%>
     <script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
-    <script type="text/javascript">
+<script type="text/javascript">
 
         // HTML로딩이 완료되고, 실행됨
         $(document).ready(function () {
@@ -92,53 +92,103 @@
             )
         }
     </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 16px;
+            display: block;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .radio-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .radio-group label {
+            margin-right: 10px;
+        }
+
+        .buttons {
+            text-align: right;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
+
 <body>
-<h2>커뮤니티 수정하기</h2>
-<hr/>
-<br/>
-<form name="f" id="f">
-    <input type="hidden" name="cSeq" value="<%=CmmUtil.nvl(request.getParameter("cSeq")) %>"/>
-    <div class="divTable minimalistBlack">
-        <div class="divTableBody">
-            <div class="divTableRow">
-                <div class="divTableCell">제목
-                </div>
-                <div class="divTableCell">
-                    <input type="text" name="title" maxlength="100"
-                           style="width: 95%"/><%=CmmUtil.nvl(rDTO.getTitle()) %>
-                </div>
-            </div>
-            <div class="divTableRow">
-                <div class="divTableCell">공지글 여부
-                </div>
-                <div class="divTableCell">
-                    예<input type="radio" name="communityYn"
-                            value="Y" <%=CmmUtil.checked(CmmUtil.nvl(rDTO.getCommunityYn()), "Y") %> />
-                    아니오<input type="radio" name="communityYn"
-                              value="N" <%=CmmUtil.checked(CmmUtil.nvl(rDTO.getCommunityYn()), "N") %>/>
-                </div>
-            </div>
-            <div class="divTableRow">
-                <div class="divTableCell">조회수
-                </div>
-                <div class="divTableCell"><%=CmmUtil.nvl(rDTO.getReadCnt()) %>
-                </div>
-            </div>
-            <div class="divTableRow">
-                <div class="divTableCell">내용
-                </div>
-                <div class="divTableCell">
-                    <textarea name="contents"
-                              style="width: 95%; height: 400px"><%=CmmUtil.nvl(rDTO.getContents()) %></textarea>
-                </div>
+<div class="container">
+    <h1>커뮤니티 수정하기</h1>
+    <form name="f" id="f">
+        <input type="hidden" name="cSeq" value="<%=CmmUtil.nvl(request.getParameter("cSeq")) %>"/>
+
+        <div class="form-group">
+            <label>제목</label>
+            <input type="text" name="title" maxlength="100" value="<%=CmmUtil.nvl(rDTO.getTitle()) %>">
+        </div>
+
+        <div class="form-group">
+            <label>공지글 여부</label>
+            <div class="radio-group">
+                <label>예</label>
+                <input type="radio" name="communityYn" value="Y" <%=CmmUtil.checked(CmmUtil.nvl(rDTO.getCommunityYn()), "Y") %>
+
+                <label>아니오</label>
+                <input type="radio" name="communityYn" value="N" <%=CmmUtil.checked(CmmUtil.nvl(rDTO.getCommunityYn()), "N") %>
             </div>
         </div>
-    </div>
-    <div>
-        <button id="btnSend" type="button">수정</button>
-        <button type="reset">다시 작성</button>
-    </div>
-</form>
+
+        <div class="form-group">
+            <label>내용</label>
+            <textarea name="contents" rows="10"><%=CmmUtil.nvl(rDTO.getContents()) %></textarea>
+        </div>
+
+        <div class="buttons">
+            <button class="button" id="btnSend" type="button">수정</button>
+            <button class="button" type="reset">다시 작성</button>
+        </div>
+    </form>
+</div>
 </body>
 </html>

@@ -44,4 +44,5 @@ public interface ICommunityService {
      */
     void deleteCommunityInfo(CommunityDTO pDTO) throws Exception;
 
+
 }
